@@ -1,13 +1,49 @@
-<mat-drawer-container fullscreen>
+<mat-sidenav-container fullscreen>
 
-    <mat-sidenav #sidenav>
-        <h1>Sidenav</h1>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar color="primary">
+            <span>Menu</span>
+            <span class="spacer"></span>
+
+            <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon></button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a routerLink="./listar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-icon-list>label</mat-icon>
+                <span>Lista de Heróis</span>
+            </a>
+
+            <a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-icon-list>add</mat-icon>
+                <span>Adicionar Herói</span>
+            </a>
+
+            <a routerLink="./buscar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-icon-list>search</mat-icon>
+                <span>Pesquisar Herói</span>
+            </a>
+
+        </mat-nav-list>
     </mat-sidenav>
 
     <mat-toolbar>
         <span class="material-icons"> sports_gymnastics </span>
         <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon></button>
+
+        <span class="spacer"></span>
+
+        <button mat-button>
+        Logout
+        </button>
+
     </mat-toolbar>
 
-</mat-drawer-container>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+
+</mat-sidenav-container>
