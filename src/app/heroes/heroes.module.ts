@@ -1,3 +1,4 @@
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HeroesRoutingModule } from './heroes-routing.module';
@@ -7,6 +8,8 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '../material/material.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   imports: [
     CommonModule,
     HeroesRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MaterialModule
   ],
 })
 export class HeroesModule {}
