@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListarComponent } from './pages/listar/listar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MaterialModule } from '../material/material.module';
     HeroeComponent,
     HomeComponent,
     ListarComponent,
+    HeroeTarjetaComponent,
   ],
   imports: [
     CommonModule,
