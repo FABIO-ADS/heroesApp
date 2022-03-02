@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Heroe, Publisher } from './../../interfaces/heroes.interfaces';
@@ -39,7 +40,9 @@ export class AgregarComponent implements OnInit {
   constructor(
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router ) {}
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     if (!this.router.url.includes('editar')) {
@@ -48,7 +51,7 @@ export class AgregarComponent implements OnInit {
 
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.heroesService.getHeroePorId(id)))
-      .subscribe(heroe => (this.heroe = heroe));
+      .subscribe((heroe) => (this.heroe = heroe));
   }
 
   salvar() {
@@ -56,28 +59,29 @@ export class AgregarComponent implements OnInit {
       return;
     }
 
-    if ( this.heroe.id ) {
+    if (this.heroe.id) {
       // Atualizar
       this.heroesService
         .atualizarHeroe(this.heroe)
-        .subscribe( heroe => console.log('Atualizando', heroe));
+        .subscribe(heroe => this.mostrarSnackBar('Registro Atualizado!'));
     } else {
       // Criar
-      this.heroesService
-        .adicionarHeroe(this.heroe)
-        .subscribe(heroe => {
+      this.heroesService.adicionarHeroe(this.heroe).subscribe((heroe) => {
         this.router.navigate(['/heroes/editar', heroe.id]);
-      })
+        this.mostrarSnackBar('Registro Salvo!');
+      });
     }
   }
 
   excluir() {
+    this.heroesService.excluirHeroe(this.heroe.id!).subscribe((resp) => {
+      this.router.navigate(['/heroes']);
+    });
+  }
 
-    this.heroesService.excluirHeroe(this.heroe.id!)
-      .subscribe(resp => {
-
-        this.router.navigate(['/heroes']);
-    })
-
+  mostrarSnackBar(mensagem: string) {
+    this.snackBar.open(mensagem, 'Ok!', {
+      duration: 2000,
+    });
   }
 }
