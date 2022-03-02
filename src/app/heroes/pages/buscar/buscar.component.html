@@ -9,11 +9,16 @@
 
         <mat-form-field>
             <input type="text" placeholder="Pick one" aria-label="Number" matInput [(ngModel)]="termino" [matAutocomplete]="auto" (input)="buscando()" />
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
                 <mat-option *ngFor="let heroes of heroes" [value]="heroes">
                     {{ heroes.superhero }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
+
+    <div>
+        <pre>{{ heroeSelecionado | json }}</pre>
+    </div>
+
 </div>
