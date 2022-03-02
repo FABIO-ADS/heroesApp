@@ -1,3 +1,5 @@
+import { HeroesService } from './../../services/heroes.service';
+import { Heroe } from './../../interfaces/heroes.interfaces';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscarComponent implements OnInit {
 
-  constructor() { }
+  termino: string = '';
+  heroes: Heroe[] = [];
+
+  constructor( private heroesService: HeroesService) { }
 
   ngOnInit(): void {
+  }
+
+  buscando() {
+
+    this.heroesService.getHeroes().subscribe( heroes => this.heroes = heroes
+    );
+
   }
 
 }
