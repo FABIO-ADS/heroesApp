@@ -1,6 +1,6 @@
 import { HeroesService } from './../../services/heroes.service';
 import { Component, OnInit, Pipe } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Heroe } from '../../interfaces/heroes.interfaces';
 
@@ -8,23 +8,29 @@ import { Heroe } from '../../interfaces/heroes.interfaces';
   selector: 'app-heroe',
   templateUrl: './heroe.component.html',
   styles: [
-  ]
+    `
+    img {
+        width: 100%;
+        border-radios: 5px;
+    }`,
+  ],
 })
 export class HeroeComponent implements OnInit {
-
   heroe!: Heroe;
 
-  constructor(private activatedRoute: ActivatedRoute,
-  private heroesService: HeroesService ) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private heroesService: HeroesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this.activatedRoute.params
-      .pipe(
-      switchMap(({ id }) => this.heroesService.getHeroePorId(id))
-    )
-      .subscribe( heroe => this.heroe = heroe );
-
+      .pipe(switchMap(({ id }) => this.heroesService.getHeroePorId(id)))
+      .subscribe((heroe) => (this.heroe = heroe));
   }
 
+  voltar( ) {
+    this.router.navigate(['/heroes/listar']);
+  }
 }
