@@ -1,32 +1,35 @@
-<h1>Novo Herói <small>asd</small></h1>
+<h1>
+    Novo Herói <small>{{ heroe.superhero }}</small>
+</h1>
 
-<div fxLayout="row" fxLayoutGap="40px">
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
     <div fxFlex="50" fxLayout="column">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
 
-        <div fxLayout="row" fxLayoutGap="20px">
-            <mat-form-field fxFlex="100">
                 <mat-label>Super Herói</mat-label>
-                <input matInput type="text" required />
+                <input matInput type="text" [(ngModel)]=" heroe.superhero" required />
             </mat-form-field>
+
             <mat-form-field fxFlex="100">
                 <mat-label>Alter Ego</mat-label>
-                <input matInput type="text" required />
+                <input matInput type="text" [(ngModel)]=" heroe.alter_ego" required />
             </mat-form-field>
         </div>
 
         <mat-form-field>
             <mat-label>Primeira Aparição</mat-label>
-            <input matInput type="text" required />
+            <input matInput type="text" [(ngModel)]=" heroe.first_appearance" required />
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Personagens</mat-label>
-            <input matInput type="text" required />
+            <input matInput type="text" [(ngModel)]=" heroe.characters" required />
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Criador</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]=" heroe.publisher" required>
                 <mat-option *ngFor="let publicher of publisher" [value]="publicher.id">
                     {{ publicher.descricao }}
                 </mat-option>
@@ -35,19 +38,18 @@
 
         <mat-form-field>
             <mat-label>Foto Url</mat-label>
-            <input matInput type="url" required />
+            <input matInput type="url" [(ngModel)]=" heroe.alt_img" required />
         </mat-form-field>
 
-        <br>
+        <br />
 
-        <button mat-raised-button color="primary">
-        <mat-icon class="mat-18">save</mat-icon>
-        Salvar
-        </button>
-
+        <button mat-raised-button color="primary" (click)="salvar()">
+      <mat-icon class="mat-18">save</mat-icon>
+      Salvar
+    </button>
     </div>
 
     <div fxFlex>
-        <img [src]=" heroe | imagen">
+        <img [src]="heroe | imagen" />
     </div>
 </div>
