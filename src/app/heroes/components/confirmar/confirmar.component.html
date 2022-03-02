@@ -1,0 +1,12 @@
+<h1>Está Seguro??</h1>
+<hr />
+<p>
+    Irá excluir o arquivo {{ data.superhero }} <br /> Deseja Continuar?
+</p>
+
+<hr />
+
+<div>
+    <button mat-button (click)="excluir()" color="warn">Sim, Excluir!</button>
+    <button mat-button (click)="cancelar()" color="primary">Cancelar!</button>
+</div>
