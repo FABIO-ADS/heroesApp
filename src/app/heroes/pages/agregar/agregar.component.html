@@ -6,30 +6,29 @@
     <div fxFlex="50" fxLayout="column">
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
             <mat-form-field fxFlex="100" fxLayout.xs="column">
-
                 <mat-label>Super Herói</mat-label>
-                <input matInput type="text" [(ngModel)]=" heroe.superhero" required />
+                <input matInput type="text" [(ngModel)]="heroe.superhero" required />
             </mat-form-field>
 
             <mat-form-field fxFlex="100">
                 <mat-label>Alter Ego</mat-label>
-                <input matInput type="text" [(ngModel)]=" heroe.alter_ego" required />
+                <input matInput type="text" [(ngModel)]="heroe.alter_ego" required />
             </mat-form-field>
         </div>
 
         <mat-form-field>
             <mat-label>Primeira Aparição</mat-label>
-            <input matInput type="text" [(ngModel)]=" heroe.first_appearance" required />
+            <input matInput type="text" [(ngModel)]="heroe.first_appearance" required />
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Personagens</mat-label>
-            <input matInput type="text" [(ngModel)]=" heroe.characters" required />
+            <input matInput type="text" [(ngModel)]="heroe.characters" required />
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Criador</mat-label>
-            <mat-select [(ngModel)]=" heroe.publisher" required>
+            <mat-select [(ngModel)]="heroe.publisher" required>
                 <mat-option *ngFor="let publicher of publisher" [value]="publicher.id">
                     {{ publicher.descricao }}
                 </mat-option>
@@ -38,15 +37,24 @@
 
         <mat-form-field>
             <mat-label>Foto Url</mat-label>
-            <input matInput type="url" [(ngModel)]=" heroe.alt_img" required />
+            <input matInput type="url" [(ngModel)]="heroe.alt_img" required />
         </mat-form-field>
 
         <br />
 
-        <button mat-raised-button color="primary" (click)="salvar()">
-      <mat-icon class="mat-18">save</mat-icon>
-      Salvar
-    </button>
+        <div fxLayout>
+            <button mat-raised-button color="primary" (click)="salvar()">
+        <mat-icon >save</mat-icon>
+        Salvar
+      </button>
+
+            <span class="spacer"></span>
+
+            <button *ngIf="heroe.id" mat-raised-button color="warn" (click)="excluir()">
+        <mat-icon>remove</mat-icon>
+        Excluir
+      </button>
+        </div>
     </div>
 
     <div fxFlex>

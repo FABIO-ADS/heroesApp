@@ -70,4 +70,14 @@ export class AgregarComponent implements OnInit {
       })
     }
   }
+
+  excluir() {
+
+    this.heroesService.excluirHeroe(this.heroe.id!)
+      .subscribe(resp => {
+
+        this.router.navigate(['/heroes']);
+    })
+
+  }
 }
