@@ -48,7 +48,7 @@ export class AgregarComponent implements OnInit {
 
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.heroesService.getHeroePorId(id)))
-      .subscribe((heroe) => (this.heroe = heroe));
+      .subscribe(heroe => (this.heroe = heroe));
   }
 
   salvar() {
@@ -56,14 +56,15 @@ export class AgregarComponent implements OnInit {
       return;
     }
 
-    if (this.heroe.id) {
+    if ( this.heroe.id ) {
       // Atualizar
       this.heroesService
         .atualizarHeroe(this.heroe)
         .subscribe( heroe => console.log('Atualizando', heroe));
     } else {
       // Criar
-      this.heroesService.adicionarHeroe(this.heroe)
+      this.heroesService
+        .adicionarHeroe(this.heroe)
         .subscribe(heroe => {
         this.router.navigate(['/heroes/editar', heroe.id]);
       })
