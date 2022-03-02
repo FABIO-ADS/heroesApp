@@ -95,7 +95,6 @@ export class AgregarComponent implements OnInit {
     )
   }
 
-
   mostrarSnackBar(mensagem: string) {
 
     this.snackBar.open(mensagem, 'Ok!', {
